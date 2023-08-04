@@ -5,6 +5,9 @@ const http = require("http");
 // internal import
 const app = require("./app/app");
 
+// database connection
+require("./db/db")();
+
 // create server
 const server = http.createServer(app);
 
