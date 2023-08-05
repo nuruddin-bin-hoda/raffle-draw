@@ -206,6 +206,42 @@ const createMultipleTickets = async (req, res) => {
   }
 };
 
+// raffle draw / get winner
+const raffleDraw = async (req, res) => {
+  try {
+    // store tickets numbers
+    const ticketsNumber = [];
+
+    // get number from db
+    const data = await Ticket.find().select("number -_id");
+
+    // store numbers to an array
+    data.forEach((key) => {
+      ticketsNumber.push(key.number);
+    });
+
+    // get winner
+    const winners = [];
+
+    for (let i = 0; i < process.env.WINNERS; i++) {
+      const randomNumber = Math.floor(Math.random() * ticketsNumber.length);
+      const winnerTicketNumber = ticketsNumber[randomNumber];
+      const winner = await Ticket.findOne({
+        number: winnerTicketNumber,
+      }).select("number username price -_id");
+      winners.push(winner);
+    }
+
+    res.status(200).json({
+      winners: winners,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "There was a server site problem!",
+    });
+  }
+};
+
 // get all tickets
 const getAllTickets = async (req, res) => {
   try {
@@ -231,4 +267,5 @@ module.exports = {
   updateTicketByUsername,
   deleteTicketById,
   deleteTicketByUsername,
+  raffleDraw,
 };

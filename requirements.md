@@ -22,9 +22,8 @@
 - DELETE /tickets/t/:ticketId [delete a ticket by ID] 👍
 - GET    /tickets/u/:username [get a ticket by username] 👍
 - PATCH  /tickets/u/:username [update a ticket by username] 👍
-- DELETE /tickets/u/:username [delete a ticket by username]
+- DELETE /tickets/u/:username [delete a ticket by username] 👍
 - POST   /tickets/sell [create a ticket] 👍
 - POST   /tickets/bulk [create multiple tickets] 👍
-- GET    /tickets/draw [raffle draw] 
-- GET    /tickets/bust [delete all tickets] 
+- GET    /tickets/draw [raffle draw] 👍
 - GET    /tickets [get all tickets] 👍

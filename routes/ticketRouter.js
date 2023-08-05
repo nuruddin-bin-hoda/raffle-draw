@@ -9,6 +9,7 @@ const {
   updateTicketByUsername,
   deleteTicketById,
   deleteTicketByUsername,
+  raffleDraw,
 } = require("../controller/ticketController");
 
 // route handeler
@@ -35,7 +36,7 @@ router.post("/sell", createTicket);
 router.post("/bulk", createMultipleTickets);
 
 // raffle draw
-// router.get("/draw");
+router.get("/draw", raffleDraw);
 
 // get all tickets
 router.get("/", getAllTickets);
