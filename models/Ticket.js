@@ -6,12 +6,17 @@ const ticketSchema = new mongoose.Schema(
   {
     number: {
       type: Number,
+      require: true,
+      trim: true,
     },
     price: {
       type: Number,
+      require: true,
+      trim: true,
     },
     username: {
       type: String,
+      require: true,
       trim: true,
     },
   },
