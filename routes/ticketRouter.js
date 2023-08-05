@@ -1,25 +1,43 @@
 // internal imports
-const { createTicket } = require("../controller/ticketController");
+const {
+  createTicket,
+  createMultipleTickets,
+  getAllTickets,
+  getTicketById,
+  getTicketByUsername,
+  updateTicketById,
+  updateTicketByUsername,
+  deleteTicketById,
+  deleteTicketByUsername,
+} = require("../controller/ticketController");
 
 // route handeler
 const router = require("express").Router();
 
 // by ID routes handeler
-// router.route("/t/:ticketId").get().patch().delete();
+router
+  .route("/t/:ticketId")
+  .get(getTicketById)
+  .patch(updateTicketById)
+  .delete(deleteTicketById);
 
 //by username routes handeler
-// router.route("/t/:username").get().patch().delete();
+router
+  .route("/u/:username")
+  .get(getTicketByUsername)
+  .patch(updateTicketByUsername)
+  .delete(deleteTicketByUsername);
 
 // create a ticket
 router.post("/sell", createTicket);
 
 // create multiple tickets
-// router.post("/bulk");
+router.post("/bulk", createMultipleTickets);
 
 // raffle draw
 // router.get("/draw");
 
 // get all tickets
-// get("/");
+router.get("/", getAllTickets);
 
 module.exports = router;
